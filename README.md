@@ -1,6 +1,6 @@
 # LambdaDB Client
 
-This package is a client for the [https://github.com/Theo-/lambdaDB](LambdaDB) server.
+This package is a client for the [LambdaDB](https://github.com/Theo-/lambdaDB) server.
 
 ## Examples
 
