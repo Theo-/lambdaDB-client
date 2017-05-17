@@ -1,18 +1,31 @@
 var request = require('request'),
     table = require('./lib/table.js'),
-    raw = require('./lib/raw.js'),
+    database = require('./lib/database.js'),
+    raw = require('./lib/raw.js')
+    template = require('./lib/template.js'),
     restService = require('./lib/restService.js');
 
 var lambdaClient = function(config) {
     var _restService = restService(config);
+    var me = this;
 
-    this.table = function(tableName) {
-        return table(tableName, _restService);
-    }
+    me.db = {};
+
+    this.t = this.table = function(tableName) {
+        this[tableName] = table(tableName, _restService, null);
+        return this[tableName];
+    }.bind(this);
 
     this.raw = function(query) {
         return raw(query, _restService);
     }
+
+    this.database = function(databaseName) {
+        me['db'][databaseName] = database(databaseName, _restService);
+        return me['db'][databaseName];
+    }
+
+    this.template = template(_restService);
 
     return this;
 }
