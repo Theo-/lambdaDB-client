@@ -32,6 +32,10 @@ var lambdaClient = function(config) {
         return database(_restService.databaseName, _restService).drop();
     }
 
+    this.me = function() {
+        return _restService.get('/me');
+    }
+
     this.database = function(databaseName) {
         _restService.databaseName = databaseName;
         return this;
