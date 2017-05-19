@@ -21,8 +21,8 @@ var lambdaClient = function(config) {
     }
 
     this.database = function(databaseName) {
-        me['db'][databaseName] = database(databaseName, _restService);
-        return me['db'][databaseName];
+        _restService.databaseName = databaseName;
+        return me;
     }
 
     this.template = template(_restService);
