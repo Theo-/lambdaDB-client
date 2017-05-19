@@ -12,17 +12,33 @@ var lambdaClient = function(config) {
     me.db = {};
 
     this.t = this.table = function(tableName) {
-        this[tableName] = table(tableName, _restService, null);
-        return this[tableName];
+        me[tableName] = table(tableName, _restService, null);
+        return me[tableName];
     }.bind(this);
+
+    this.tables = function() {
+        return database('', _restService).tables();
+    }
 
     this.raw = function(query) {
         return raw(query, _restService);
     }
 
+    this.create = function() {
+        return database(_restService.databaseName, _restService).create();
+    }
+
+    this.drop = function() {
+        return database(_restService.databaseName, _restService).drop();
+    }
+
     this.database = function(databaseName) {
         _restService.databaseName = databaseName;
-        return me;
+        return this;
+    }
+
+    this.databases = function() {
+        return database('', _restService).list();
     }
 
     this.template = template(_restService);
