@@ -2,6 +2,12 @@
 
 This package is a client for the [LambdaDB](https://github.com/Theo-/lambdaDB) server.
 
+## Secret Token
+
+Get your secret token by running `lambdadb info` in your terminal:
+
+![secretToken](assets/secretToken.png)
+
 ## Examples
 
 ### Insert into a table
@@ -9,7 +15,8 @@ This package is a client for the [LambdaDB](https://github.com/Theo-/lambdaDB) s
 ```js
 var lambdaDB = require('lambdadb')({
     host: 'localhost',
-    secretToken: 'my secret token'
+    secretToken: 'my secret token',
+    database: 'databasename'
 })
 
 lambdaDB.table('users').insert({
@@ -25,7 +32,8 @@ lambdaDB.table('users').insert({
 ```js
 var lambdaDB = require('lambdadb')({
     host: 'localhost',
-    secretToken: 'my secret token'
+    secretToken: 'my secret token',
+    database: 'databasename'
 })
 
 lambdaDB.raw('SELECT * FROM users').then(function(response) {
@@ -38,7 +46,8 @@ lambdaDB.raw('SELECT * FROM users').then(function(response) {
 ```js
 var lambdaDB = require('lambdadb')({
     host: 'localhost',
-    secretToken: 'my secret token'
+    secretToken: 'my secret token',
+    database: 'databasename'
 })
 
 lambdaDB.table('users').describe().then(function(response) {
